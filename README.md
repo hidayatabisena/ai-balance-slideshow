@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# Eksperimen dalam Kelas Metodologi Penelitian
+Eksperimen dilakukan dalam dua sesi perkuliahan bertema "Diplomasi Digital Indonesia".
 
-## Project info
+Mahasiswa diminta membuat proposal riset dalam dua kondisi ekstrem:
 
-**URL**: https://lovable.dev/projects/a5539da5-932e-4b77-9c3b-93d4b21a783c
+## Pertemuan Pertama – Wajib Menggunakan AI
+- Mahasiswa diberi waktu 90 menit + homework seminggu untuk menyusun proposal menggunakan AI tools seperti ChatGPT, Claude, atau Perplexity.
 
-## How can I edit this code?
+- Output teknis cepat dan rapi.
 
-There are several ways of editing your application.
+- Mayoritas proposal seragam dan terlalu generik.
 
-**Use Lovable**
+- Mahasiswa cenderung pasif, hanya menerima output AI.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a5539da5-932e-4b77-9c3b-93d4b21a783c) and start prompting.
+- Banyak yang “terlihat sempurna” tapi kehilangan keunikan dan kedalaman berpikir.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Pertemuan Kedua – Dilarang Menggunakan AI
+- Mahasiswa harus menyusun proposal baru tanpa bantuan AI sama sekali.
 
-**Use your preferred IDE**
+- Suasana kelas jadi lebih hidup: diskusi, kebingungan, refleksi.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Proses berpikir manual menghasilkan ide-ide orisinil dan relevan.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Salah satu mahasiswa mengusulkan topik "influencer diplomacy", sebuah ide yang lahir dari observasi personal dan kepekaan sosial.
 
-Follow these steps:
+- Proposal memang tidak sempurna, tapi penuh karakter dan rasa memiliki.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Sesi Sintesis – Kombinasi Keduanya
+- Mahasiswa diajak menggabungkan kelebihan dari kedua pendekatan:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Ambil ide inti dari versi manual (tanpa AI)
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Gunakan AI untuk bantu struktur, referensi, dan polishing
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- Hasil: proposal yang solid secara teknis dan kuat secara orisinalitas
 
-**Edit a file directly in GitHub**
+## ✨ Pelajaran Penting dari Eksperimen
+- AI adalah alat bantu, bukan pengganti proses berpikir.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Proses struggling itu penting — di sanalah orisinalitas dan pemahaman tumbuh.
 
-**Use GitHub Codespaces**
+- AI membantu efisiensi teknis, tapi ide orisinal hanya muncul dari kepekaan, rasa ingin tahu, dan pengalaman manusia.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Pendidikan harus mengajarkan kapan dan bagaimana menggunakan AI secara bijak, bukan sekadar mempercepat tugas.
 
-## What technologies are used for this project?
+- Proposal yang sempurna itu mudah dibuat dengan AI, tapi yang bernilai adalah proposal yang punya perspektif unik.
 
-This project is built with:
+- Kreativitas dan pertanyaan kritis adalah aset paling berharga di era AI.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Jangan hanya ajarkan hasil, ajarkan proses berpikir.
 
-## How can I deploy this project?
+## 🧠 Penutup Reflektif
 
-Simply open [Lovable](https://lovable.dev/projects/a5539da5-932e-4b77-9c3b-93d4b21a783c) and click on Share -> Publish.
+Di era di mana semua orang bisa menulis dengan AI, yang membedakan bukan output-nya, tapi cara kita melihat dunia dan bertanya tentangnya.
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+"Perfect is boring. Original is valuable."
