@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Moon, Sun, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -184,13 +183,15 @@ const Presentation = () => {
   ];
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: NodeJS.Timeout | null = null;
     if (autoPlay) {
       interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
-      }, 8000);
+      }, 5000); // Changed to 5 seconds for better pacing
     }
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [autoPlay, slides.length]);
 
   const nextSlide = () => {
@@ -212,18 +213,59 @@ const Presentation = () => {
   const slide = slides[currentSlide];
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${
+    <div className={`min-h-screen transition-all duration-500 relative overflow-hidden ${
       darkMode 
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white' 
-        : 'bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 text-slate-800'
+        : 'bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 text-slate-900'
     }`}>
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated Blobs */}
+        <div className={`absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-20 animate-pulse ${
+          darkMode ? 'bg-blue-500' : 'bg-blue-300'
+        }`} />
+        <div className={`absolute -bottom-32 -left-32 w-64 h-64 rounded-full opacity-15 animate-pulse ${
+          darkMode ? 'bg-purple-500' : 'bg-purple-300'
+        }`} style={{ animationDelay: '1s' }} />
+        <div className={`absolute top-1/2 right-1/4 w-48 h-48 rounded-full opacity-10 animate-pulse ${
+          darkMode ? 'bg-green-500' : 'bg-green-300'
+        }`} style={{ animationDelay: '2s' }} />
+        
+        {/* Curved Lines */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+          <path
+            d="M0,300 Q250,200 500,250 T1000,200"
+            stroke={darkMode ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.05)'}
+            strokeWidth="2"
+            fill="none"
+            className="animate-pulse"
+          />
+          <path
+            d="M0,600 Q300,500 600,550 T1000,500"
+            stroke={darkMode ? 'rgba(168, 85, 247, 0.1)' : 'rgba(168, 85, 247, 0.05)'}
+            strokeWidth="2"
+            fill="none"
+            className="animate-pulse"
+            style={{ animationDelay: '1.5s' }}
+          />
+        </svg>
+        
+        {/* Geometric Shapes */}
+        <div className={`absolute top-20 left-20 w-16 h-16 rotate-45 opacity-10 animate-spin ${
+          darkMode ? 'bg-yellow-400' : 'bg-yellow-300'
+        }`} style={{ animationDuration: '20s' }} />
+        <div className={`absolute bottom-40 right-20 w-12 h-12 opacity-15 animate-bounce ${
+          darkMode ? 'bg-red-400' : 'bg-red-300'
+        }`} style={{ animationDuration: '3s' }} />
+      </div>
+
       {/* Controls */}
       <div className="fixed top-4 right-4 z-50 flex gap-2">
         <Button
           onClick={toggleAutoPlay}
           variant="outline"
           size="sm"
-          className={`${darkMode ? 'bg-slate-800 border-slate-600' : 'bg-white/80'}`}
+          className={`${darkMode ? 'bg-slate-800/80 border-slate-600 text-white hover:bg-slate-700' : 'bg-white/80 text-slate-900 hover:bg-white'} backdrop-blur-sm`}
         >
           {autoPlay ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
         </Button>
@@ -231,14 +273,14 @@ const Presentation = () => {
           onClick={toggleDarkMode}
           variant="outline"
           size="sm"
-          className={`${darkMode ? 'bg-slate-800 border-slate-600' : 'bg-white/80'}`}
+          className={`${darkMode ? 'bg-slate-800/80 border-slate-600 text-white hover:bg-slate-700' : 'bg-white/80 text-slate-900 hover:bg-white'} backdrop-blur-sm`}
         >
           {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </Button>
       </div>
 
       {/* Slide Content */}
-      <div className="relative h-screen flex items-center justify-center p-8">
+      <div className="relative h-screen flex items-center justify-center p-8 z-10">
         <div className="w-full max-w-6xl animate-fade-in">
           {slide.type === 'title' && (
             <div className="text-center space-y-8">
@@ -250,13 +292,13 @@ const Presentation = () => {
               <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-slide-in-right">
                 {slide.title}
               </h1>
-              <h2 className="text-3xl font-light text-slate-600 dark:text-slate-300">
+              <h2 className={`text-3xl font-light ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                 {slide.subtitle}
               </h2>
-              <p className="text-xl italic text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+              <p className={`text-xl italic max-w-2xl mx-auto ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
                 {slide.quote}
               </p>
-              <p className="text-lg font-medium text-slate-700 dark:text-slate-200">
+              <p className={`text-lg font-medium ${darkMode ? 'text-slate-100' : 'text-slate-800'}`}>
                 {slide.author}
               </p>
             </div>
@@ -264,30 +306,30 @@ const Presentation = () => {
 
           {slide.type === 'quote' && (
             <div className="text-center space-y-8">
-              <blockquote className="text-4xl font-light italic text-center max-w-4xl mx-auto">
+              <blockquote className={`text-4xl font-light italic text-center max-w-4xl mx-auto ${darkMode ? 'text-slate-100' : 'text-slate-800'}`}>
                 {slide.content}
               </blockquote>
-              <p className="text-2xl text-slate-600 dark:text-slate-300">{slide.author}</p>
-              <div className="mt-12 p-6 rounded-xl bg-blue-100 dark:bg-slate-800">
-                <p className="text-xl text-blue-800 dark:text-blue-300">{slide.question}</p>
+              <p className={`text-2xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.author}</p>
+              <div className={`mt-12 p-6 rounded-xl ${darkMode ? 'bg-slate-800/50 border border-slate-700' : 'bg-blue-100'}`}>
+                <p className={`text-xl ${darkMode ? 'text-blue-300' : 'text-blue-800'}`}>{slide.question}</p>
               </div>
             </div>
           )}
 
           {slide.type === 'story' && (
             <div className="space-y-8">
-              <h1 className="text-5xl font-bold text-center mb-12">{slide.title}</h1>
+              <h1 className={`text-5xl font-bold text-center mb-12 ${darkMode ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h1>
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                  <p className="text-xl leading-relaxed">{slide.content}</p>
-                  <div className="p-6 rounded-xl bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500">
-                    <p className="text-lg font-medium text-yellow-800 dark:text-yellow-300">
+                  <p className={`text-xl leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
+                  <div className={`p-6 rounded-xl border-l-4 border-yellow-500 ${darkMode ? 'bg-yellow-900/30 text-yellow-200' : 'bg-yellow-100 text-yellow-800'}`}>
+                    <p className="text-lg font-medium">
                       {slide.result}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-lg">
                     <span className="text-6xl">🔬</span>
                   </div>
                 </div>
@@ -297,12 +339,12 @@ const Presentation = () => {
 
           {slide.type === 'audience-question' && (
             <div className="text-center space-y-12">
-              <h1 className="text-6xl font-bold leading-tight max-w-4xl mx-auto">
+              <h1 className={`text-6xl font-bold leading-tight max-w-4xl mx-auto ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                 {slide.question}
               </h1>
-              <p className="text-2xl text-slate-600 dark:text-slate-300">{slide.subtext}</p>
+              <p className={`text-2xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.subtext}</p>
               <div className="flex justify-center">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center animate-pulse">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center animate-pulse shadow-lg">
                   <span className="text-4xl">🤚</span>
                 </div>
               </div>
@@ -311,15 +353,15 @@ const Presentation = () => {
 
           {slide.type === 'journey' && (
             <div className="space-y-8">
-              <h1 className="text-4xl font-bold text-center">{slide.title}</h1>
+              <h1 className={`text-4xl font-bold text-center ${darkMode ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h1>
               <div className="flex items-center justify-center gap-8">
                 <div className="text-6xl">{slide.icon}</div>
-                <div className="text-2xl font-light text-slate-600 dark:text-slate-400">{slide.timeline}</div>
+                <div className={`text-2xl font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{slide.timeline}</div>
               </div>
-              <h2 className="text-3xl font-semibold text-center text-blue-600 dark:text-blue-400">
+              <h2 className={`text-3xl font-semibold text-center ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>
                 {slide.subtitle}
               </h2>
-              <p className="text-xl text-center max-w-3xl mx-auto leading-relaxed">
+              <p className={`text-xl text-center max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                 {slide.content}
               </p>
             </div>
@@ -327,10 +369,10 @@ const Presentation = () => {
 
           {slide.type === 'challenge' && (
             <div className="text-center space-y-8">
-              <h1 className="text-5xl font-bold text-red-600 dark:text-red-400">{slide.title}</h1>
-              <p className="text-2xl max-w-3xl mx-auto leading-relaxed">{slide.content}</p>
+              <h1 className={`text-5xl font-bold ${darkMode ? 'text-red-400' : 'text-red-600'}`}>{slide.title}</h1>
+              <p className={`text-2xl max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
               <div className="flex justify-center">
-                <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center">
+                <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center shadow-lg">
                   <span className="text-6xl">⚡</span>
                 </div>
               </div>
@@ -339,10 +381,10 @@ const Presentation = () => {
 
           {slide.type === 'balance-attempt' && (
             <div className="text-center space-y-8">
-              <h1 className="text-5xl font-bold text-green-600 dark:text-green-400">{slide.title}</h1>
-              <p className="text-2xl max-w-3xl mx-auto leading-relaxed">{slide.content}</p>
+              <h1 className={`text-5xl font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>{slide.title}</h1>
+              <p className={`text-2xl max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
               <div className="flex justify-center">
-                <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
                   <span className="text-6xl">⚖️</span>
                 </div>
               </div>
@@ -351,17 +393,17 @@ const Presentation = () => {
 
           {slide.type === 'insight' && (
             <div className="space-y-8">
-              <h1 className="text-4xl font-bold text-center text-purple-600 dark:text-purple-400">
+              <h1 className={`text-4xl font-bold text-center ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
                 {slide.title}
               </h1>
               <div className="text-center">
-                <h2 className="text-5xl font-bold mb-6">{slide.content}</h2>
-                <p className="text-xl max-w-3xl mx-auto text-slate-600 dark:text-slate-300">
+                <h2 className={`text-5xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-slate-900'}`}>{slide.content}</h2>
+                <p className={`text-xl max-w-3xl mx-auto ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                   {slide.description}
                 </p>
               </div>
               <div className="flex justify-center">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-lg">
                   <span className="text-4xl">💡</span>
                 </div>
               </div>
@@ -370,10 +412,10 @@ const Presentation = () => {
 
           {slide.type === 'comparison' && (
             <div className="text-center space-y-8">
-              <h1 className="text-6xl font-bold">{slide.title}</h1>
-              <p className="text-2xl max-w-3xl mx-auto leading-relaxed">{slide.content}</p>
+              <h1 className={`text-6xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h1>
+              <p className={`text-2xl max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
               <div className="flex justify-center">
-                <div className={`w-48 h-48 rounded-lg flex items-center justify-center ${
+                <div className={`w-48 h-48 rounded-lg flex items-center justify-center shadow-lg ${
                   slide.title.includes('Tool') 
                     ? 'bg-gradient-to-br from-blue-400 to-green-500' 
                     : 'bg-gradient-to-br from-orange-400 to-red-500'
@@ -388,13 +430,13 @@ const Presentation = () => {
 
           {slide.type === 'reflection' && (
             <div className="space-y-8">
-              <h1 className="text-5xl font-bold text-center text-indigo-600 dark:text-indigo-400">
+              <h1 className={`text-5xl font-bold text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
                 {slide.title}
               </h1>
               <div className="space-y-6 max-w-4xl mx-auto">
                 {slide.questions?.map((question, index) => (
-                  <div key={index} className="p-6 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 border-l-4 border-indigo-500">
-                    <p className="text-xl text-indigo-800 dark:text-indigo-300">{question}</p>
+                  <div key={index} className={`p-6 rounded-xl border-l-4 border-indigo-500 ${darkMode ? 'bg-indigo-900/30 text-indigo-200' : 'bg-indigo-100 text-indigo-800'}`}>
+                    <p className="text-xl">{question}</p>
                   </div>
                 ))}
               </div>
@@ -406,9 +448,9 @@ const Presentation = () => {
               <h1 className="text-6xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                 {slide.title}
               </h1>
-              <p className="text-2xl max-w-4xl mx-auto leading-relaxed">{slide.content}</p>
+              <p className={`text-2xl max-w-4xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
               <div className="flex justify-center">
-                <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
                   <span className="text-6xl">🌱</span>
                 </div>
               </div>
@@ -417,12 +459,12 @@ const Presentation = () => {
 
           {slide.type === 'toolkit' && (
             <div className="text-center space-y-8">
-              <h1 className="text-5xl font-bold">{slide.title}</h1>
-              <p className="text-2xl">{slide.content}</p>
+              <h1 className={`text-5xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h1>
+              <p className={`text-2xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
               <div className="flex justify-center">
-                <div className="w-48 h-48 bg-white rounded-xl flex items-center justify-center border-4 border-slate-300">
-                  <div className="w-32 h-32 bg-black rounded-lg flex items-center justify-center">
-                    <span className="text-white text-xs">QR Code</span>
+                <div className={`w-48 h-48 rounded-xl flex items-center justify-center border-4 shadow-lg ${darkMode ? 'bg-slate-800 border-slate-600' : 'bg-white border-slate-300'}`}>
+                  <div className={`w-32 h-32 rounded-lg flex items-center justify-center ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                    <span className="text-xs">QR Code</span>
                   </div>
                 </div>
               </div>
@@ -434,12 +476,12 @@ const Presentation = () => {
               <h1 className="text-7xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {slide.title}
               </h1>
-              <h2 className="text-3xl font-light text-slate-600 dark:text-slate-300">
+              <h2 className={`text-3xl font-light ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                 {slide.subtitle}
               </h2>
-              <p className="text-xl text-slate-500 dark:text-slate-400">{slide.content}</p>
+              <p className={`text-xl ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{slide.content}</p>
               <div className="flex justify-center">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-lg">
                   <span className="text-4xl">🙏</span>
                 </div>
               </div>
@@ -449,12 +491,12 @@ const Presentation = () => {
       </div>
 
       {/* Navigation */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4 z-50">
         <Button
           onClick={prevSlide}
           variant="outline"
           size="sm"
-          className={`${darkMode ? 'bg-slate-800 border-slate-600' : 'bg-white/80'}`}
+          className={`${darkMode ? 'bg-slate-800/80 border-slate-600 text-white hover:bg-slate-700' : 'bg-white/80 text-slate-900 hover:bg-white'} backdrop-blur-sm`}
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -477,14 +519,14 @@ const Presentation = () => {
           onClick={nextSlide}
           variant="outline"
           size="sm"
-          className={`${darkMode ? 'bg-slate-800 border-slate-600' : 'bg-white/80'}`}
+          className={`${darkMode ? 'bg-slate-800/80 border-slate-600 text-white hover:bg-slate-700' : 'bg-white/80 text-slate-900 hover:bg-white'} backdrop-blur-sm`}
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
       </div>
 
       {/* Slide counter */}
-      <div className="fixed bottom-4 right-4 text-sm opacity-70">
+      <div className={`fixed bottom-4 right-4 text-sm opacity-70 z-50 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
         {currentSlide + 1} / {slides.length}
       </div>
     </div>
