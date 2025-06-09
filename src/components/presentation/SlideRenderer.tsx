@@ -48,7 +48,18 @@ const SlideRenderer = ({ slide, darkMode }: SlideRendererProps) => {
           <h1 className={`text-5xl font-bold text-center mb-12 ${darkMode ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h1>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <p className={`text-xl leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
+              {Array.isArray(slide.content) ? (
+                <ul className={`text-xl leading-relaxed space-y-4 ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+                  {slide.content.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={`text-xl leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
+              )}
               <div className={`p-6 rounded-xl border-l-4 border-yellow-500 ${darkMode ? 'bg-yellow-900/30 text-yellow-200' : 'bg-yellow-100 text-yellow-800'}`}>
                 <p className="text-lg font-medium">
                   {slide.result}

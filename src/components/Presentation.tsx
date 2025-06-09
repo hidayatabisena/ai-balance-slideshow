@@ -136,14 +136,14 @@ const Presentation = () => {
         <div className="fixed top-0 left-0 right-0 z-50">
           <Progress 
             value={progress} 
-            className={`h-1 rounded-none ${
+            className={`h-1 rounded-none ${ // Ensure this line has a closing backtick if it was opened before
               darkMode ? 'bg-slate-800' : 'bg-slate-200'
             }`}
           />
           <style dangerouslySetInnerHTML={{
             __html: `
               .fixed [data-state="complete-within"] {
-                background: linear-gradient(90deg, #ec4899, #f97316) !important;
+                background: linear-gradient(90deg, #ec4899, #f87171) !important;
               }
             `
           }} />

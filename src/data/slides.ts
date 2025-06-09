@@ -27,46 +27,75 @@ export const slides: Slide[] = [
   {
     id: 3,
     type: 'story',
-    title: 'AI Research Experiment',
-    content: 'A lecturer decided to compare two approaches to research: one group used traditional methods, spending weeks in libraries and databases. The other group leveraged AI tools for initial research, analysis, and draft writing.',
-    result: 'The AI group finished 3x faster, but reported feeling disconnected from their work.',
+    title: 'Eksperimen di kelas Metode Penelitian',
+    content: [
+      '40 mahasiswa',
+      '2 pertemuan',
+      '2 pendekatan ekstrem: 100% WITH AI vs 100% WITHOUT AI'
+    ],
+    result: 'https://www.threads.com/@the.dotmatrix',
+    visual: 'experiment'
+  },
+  {
+    id: 4,
+    type: 'story',
+    title: 'Saat Semua Bisa ‘Canggih’ dalam 90 Menit',
+    content: [
+      'Topik: Diplomasi Digital Indonesia',
+      'Mahasiswa bebas pakai ChatGPT, Claude, dll',
+      'Hasil cepat & teknis: outline lengkap dalam 30 menit',
+      'Tapi… pasif, seragam, kehilangan soul'
+    ],
+    result: 'Like following an invisible template.',
+    visual: 'experiment'
+  },
+  {
+    id: 5,
+    type: 'story',
+    title: 'Saat Mereka Dipaksa Berpikir Sendiri',
+    content: [
+      'Suasana kelas berubah: riuh, penuh diskusi, coretan',
+      'Mahasiswa mulai mempertanyakan, menyusun ide sendiri',
+      'Muncul pertanyaan-pertanyaan orisinil seperti:'
+    ],
+    result: 'Kenapa influencer lebih efektif dari diplomat?',
     visual: 'experiment'
   },
   // Slide 4: Question to Audience
-  {
-    id: 4,
-    type: 'audience-question',
-    question: 'Have you ever felt more productive, but less fulfilled?',
-    subtext: 'Raise your hand if this resonates with you'
-  },
+  // {
+  //   id: 4,
+  //   type: 'audience-question',
+  //   question: 'Have you ever felt more productive, but less fulfilled?',
+  //   subtext: 'Raise your hand if this resonates with you'
+  // },
   // Slides 5-7: Journey
-  {
-    id: 5,
-    type: 'journey',
-    title: 'My 3-Year Journey with AI',
-    subtitle: 'Chapter 1: Early Adoption (2021)',
-    content: 'Discovered GPT-3, started automating simple coding tasks. Everything felt magical and limitless.',
-    icon: '🌟',
-    timeline: '2021'
-  },
-  {
-    id: 6,
-    type: 'journey',
-    title: 'My 3-Year Journey with AI',
-    subtitle: 'Chapter 2: Transformation (2022)',
-    content: 'Integrated AI into daily workflows. Code reviews, documentation, even creative writing - AI became my co-pilot.',
-    icon: '🚀',
-    timeline: '2022'
-  },
-  {
-    id: 7,
-    type: 'journey',
-    title: 'My 3-Year Journey with AI',
-    subtitle: 'Chapter 3: Dilemmas (2023-2024)',
-    content: 'Started questioning: Am I solving problems or just prompting solutions? Where did my creativity go?',
-    icon: '🤔',
-    timeline: '2023-2024'
-  },
+  // {
+  //   id: 5,
+  //   type: 'journey',
+  //   title: 'Saat Semua Bisa ‘Canggih’ dalam 90 Menit',
+  //   subtitle: 'Chapter 1: Early Adoption (2021)',
+  //   content: 'Discovered GPT-3, started automating simple coding tasks. Everything felt magical and limitless.',
+  //   icon: '🌟',
+  //   timeline: '2021'
+  // },
+  // {
+  //   id: 6,
+  //   type: 'journey',
+  //   title: 'My 3-Year Journey with AI',
+  //   subtitle: 'Chapter 2: Transformation (2022)',
+  //   content: 'Integrated AI into daily workflows. Code reviews, documentation, even creative writing - AI became my co-pilot.',
+  //   icon: '🚀',
+  //   timeline: '2022'
+  // },
+  // {
+  //   id: 7,
+  //   type: 'journey',
+  //   title: 'My 3-Year Journey with AI',
+  //   subtitle: 'Chapter 3: Dilemmas (2023-2024)',
+  //   content: 'Started questioning: Am I solving problems or just prompting solutions? Where did my creativity go?',
+  //   icon: '🤔',
+  //   timeline: '2023-2024'
+  // },
   // Slides 8-10: Searching for Balance
   {
     id: 8,

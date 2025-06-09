@@ -23,7 +23,7 @@ export interface QuoteSlide extends SlideBase {
 export interface StorySlide extends SlideBase {
   type: 'story';
   title: string;
-  content: string;
+  content: string | string[];
   result: string;
   visual: string;
 }
