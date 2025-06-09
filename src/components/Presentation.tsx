@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Moon, Sun, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -251,7 +252,15 @@ const Presentation = () => {
             className={`h-1 rounded-none ${
               darkMode ? 'bg-slate-800' : 'bg-slate-200'
             }`}
+            style={{
+              '--progress-foreground': 'linear-gradient(90deg, #ec4899, #f97316)',
+            } as React.CSSProperties & { [key: string]: string }}
           />
+          <style jsx>{`
+            .progress-bar [data-state="complete-within"] {
+              background: linear-gradient(90deg, #ec4899, #f97316);
+            }
+          `}</style>
         </div>
       )}
 
