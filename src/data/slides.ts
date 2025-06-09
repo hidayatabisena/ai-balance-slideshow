@@ -19,9 +19,9 @@ export const slides: Slide[] = [
   {
     id: 2,
     type: 'quote',
-    content: '"In the midst of winter, I found there was, within me, an invincible summer."',
-    author: '- Albert Camus',
-    question: 'How do we find our invincible summer in the AI winter?'
+    content: '"Di era dimana semua orang bisa menghasilkan proposal "sempurna" dengan AI, yang paling berharga adalah perspektif unik kalian."',
+    author: '- Arif Darmawan',
+    question: 'Dosen tetap di Jurusan Hubungan Internasional FISIP Universitas Jenderal Soedirman (UNSOED), Koordintor Pusat Riset Kebijakan Strategis Asia Tenggara, LPPM UNSOED'
   },
   // Slide 3: Story
   {

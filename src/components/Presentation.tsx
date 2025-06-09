@@ -13,6 +13,16 @@ const Presentation = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [autoPlay, setAutoPlay] = useState(false);
   const [progress, setProgress] = useState(0);
+// Remove this duplicate declaration since direction state is already declared above
+
+  const handlePaginate = (newDirection: number) => {
+    setDirection(newDirection);
+    if (newDirection > 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  };
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -48,6 +58,22 @@ const Presentation = () => {
       if (progressInterval) clearInterval(progressInterval);
     };
   }, [autoPlay]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        paginate(1);
+      } else if (event.key === 'ArrowLeft') {
+        paginate(-1);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }); // Remove paginate from dependency array since it's defined after this useEffect
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
