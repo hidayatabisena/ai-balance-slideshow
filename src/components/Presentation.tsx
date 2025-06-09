@@ -6,6 +6,7 @@ import PresentationBackground from './presentation/PresentationBackground';
 import PresentationControls from './presentation/PresentationControls';
 import PresentationNavigation from './presentation/PresentationNavigation';
 import SlideRenderer from './presentation/SlideRenderer';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Presentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,6 +67,38 @@ const Presentation = () => {
 
   const slide = slides[currentSlide];
 
+  const slideVariants = {
+    enter: (direction: number) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0
+      };
+    }
+  };
+
+  const [direction, setDirection] = useState(0);
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    if (newDirection > 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  };
+
   return (
     <div className={`min-h-screen transition-all duration-500 relative overflow-hidden ${
       darkMode 
@@ -102,15 +135,31 @@ const Presentation = () => {
 
       {/* Slide Content */}
       <div className="relative h-screen flex items-center justify-center p-8 z-10">
-        <SlideRenderer slide={slide} darkMode={darkMode} />
+        <AnimatePresence initial={false} custom={direction} mode="wait">
+          <motion.div
+            key={currentSlide}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+            className="absolute w-full h-full flex items-center justify-center"
+          >
+            <SlideRenderer slide={slide} darkMode={darkMode} />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <PresentationNavigation
         darkMode={darkMode}
         currentSlide={currentSlide}
         totalSlides={slides.length}
-        onPrevSlide={prevSlide}
-        onNextSlide={nextSlide}
+        onPrevSlide={() => paginate(-1)}
+        onNextSlide={() => paginate(1)}
         onSlideSelect={setCurrentSlide}
       />
     </div>

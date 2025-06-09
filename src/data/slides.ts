@@ -6,13 +6,13 @@ export const slides: Slide[] = [
   {
     id: 1,
     type: 'title',
-    title: 'Finding Balance in the AI Era',
-    subtitle: 'as a Path to Sustainable Productivity',
-    author: 'Your Name',
-    quote: '"The question is not whether machines think but whether men do." - B.F. Skinner',
+    title: 'Menemukan Keseimbangan Di Era AI',
+    subtitle: 'sebagai pembuka jalan produktifitas berkelanjutan',
+    author: 'Hidayat Abisena',
+    quote: '"Technology is best when it brings people together." - Matt Mullenweg (CEO of Automattic/WordPress)',
     logos: [
       'https://framerusercontent.com/images/0aaSOxupKAsVA4ou30WbxLvSQo0.png',
-      'https://unma.ac.id/wp-content/uploads/2023/02/Logo-Universitas-Majalengka-300x300-1.png'
+      'https://res.cloudinary.com/moyadev/image/upload/v1749432065/Mayar/logo-unma-transparent_likzmk.png'
     ]
   },
   // Slide 2: Opening Quote
