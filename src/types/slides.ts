@@ -46,7 +46,7 @@ export interface JourneySlide extends SlideBase {
 export interface ChallengeSlide extends SlideBase {
   type: 'challenge';
   title: string;
-  content: string;
+  content: string | string[];
   visual: string;
 }
 
@@ -81,7 +81,7 @@ export interface ReflectionSlide extends SlideBase {
 export interface ClosingSlide extends SlideBase {
   type: 'closing';
   title: string;
-  content: string;
+  content: string | string[];
   visual: string;
 }
 
@@ -99,6 +99,18 @@ export interface ThanksSlide extends SlideBase {
   content: string;
 }
 
+export interface ComparisonTableSlide extends SlideBase {
+  type: 'comparison-table';
+  title: string;
+  subtitle: string;
+  headers: string[];
+  rows: {
+    aspect: string;
+    withAI: string;
+    withoutAI: string;
+  }[];
+}
+
 export type Slide = 
   | TitleSlide 
   | QuoteSlide 
@@ -112,4 +124,5 @@ export type Slide =
   | ReflectionSlide 
   | ClosingSlide 
   | ToolkitSlide 
-  | ThanksSlide;
+  | ThanksSlide
+  | ComparisonTableSlide;

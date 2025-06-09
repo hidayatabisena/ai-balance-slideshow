@@ -98,109 +98,165 @@ export const slides: Slide[] = [
   // },
   // Slides 8-10: Searching for Balance
   {
-    id: 8,
-    type: 'challenge',
-    title: 'The Overload',
-    content: 'Too many AI tools, too many possibilities. Decision paralysis set in.',
-    visual: 'overload'
-  },
-  {
-    id: 9,
-    type: 'challenge',
-    title: 'The Detachment',
-    content: 'Work felt efficient but hollow. Like watching someone else solve my problems.',
-    visual: 'detachment'
-  },
-  {
-    id: 10,
-    type: 'balance-attempt',
-    title: 'Attempting Balance',
-    content: 'Set boundaries: AI-free hours, manual journaling, deliberate slow thinking.',
-    visual: 'balance'
-  },
-  // Slides 11-13: Insights
-  {
-    id: 11,
-    type: 'insight',
-    title: 'Insight #1',
-    content: 'Efficiency isn\'t always meaningful',
-    description: 'Fast answers aren\'t always the right answers. Sometimes the struggle is the point.',
-    visual: 'efficiency'
-  },
-  {
-    id: 12,
-    type: 'insight',
-    title: 'Insight #2',
-    content: 'Collaboration > Automation',
-    description: 'AI works best as a thinking partner, not a replacement for thinking.',
-    visual: 'collaboration'
-  },
-  {
-    id: 13,
-    type: 'insight',
-    title: 'Insight #3',
-    content: 'Preserve the human spark',
-    description: 'The messy, imperfect, uniquely human process of creation has value.',
-    visual: 'spark'
-  },
-  // Slides 14-15: Tool or Driver
-  {
-    id: 14,
-    type: 'comparison',
-    title: 'AI as Tool',
-    content: 'Amplifies human capability, supports decision-making, enhances creativity',
-    visual: 'tool'
-  },
-  {
-    id: 15,
-    type: 'comparison',
-    title: 'AI as Driver',
-    content: 'Dictates workflow, makes decisions for us, replaces human judgment',
-    visual: 'driver'
-  },
-  // Slides 16-17: Open Questions
-  {
-    id: 16,
-    type: 'reflection',
-    title: 'Open Questions',
-    questions: [
-      'What human element do you want to preserve?',
-      'How do you maintain agency in an AI-driven world?',
-      'What does "balance" mean to you?'
+    id: 6, // Adjust the ID as needed based on where you want this slide to appear
+    type: 'comparison-table',
+    title: 'Perbandingan Dua Dunia',
+    subtitle: 'Output "AI Execution" vs "Thinking Process"',
+    headers: ['Aspek', 'WITH AI', 'WITHOUT AI'],
+    rows: [
+      {
+        aspect: 'Kecepatan',
+        withAI: 'Sangat cepat',
+        withoutAI: 'Lambat'
+      },
+      {
+        aspect: 'Hasil',
+        withAI: 'Rapi, teknis',
+        withoutAI: 'Acak, belum selesai'
+      },
+      {
+        aspect: 'Ide',
+        withAI: 'Generik',
+        withoutAI: 'Orisinil'
+      },
+      {
+        aspect: 'Emosi',
+        withAI: 'Dingin',
+        withoutAI: 'Bangga, terlibat'
+      },
+      {
+        aspect: 'Proses',
+        withAI: 'Autopilot',
+        withoutAI: 'Struggle aktif'
+      }
     ]
   },
   {
-    id: 17,
+    id: 7,
+    type: 'challenge',
+    title: 'Struggling itu Penting',
+    content: [
+      "Pake AI itu seperti naik mobil autopilot.",
+      "Kalo manual jelek, tapi 100% dari saya.",
+      "AI bantu polish, tapi ide harus dari kita dulu."
+    ],
+    visual: 'overload'
+  },
+  {
+    id: 8,
+    type: 'story',
+    title: 'Synthesis: Best of Both Worlds',
+    content: [
+      'Ambil core idea dari versi manual',
+      'Gunakan AI untuk referensi dan perbaikan teknis',
+      'Tapi tetap jaga original voice'
+    ],
+    result: 'AI + Human Thinking: Duo Ideals',
+    visual: 'experiment'
+  },
+  // {
+  //   id: 9,
+  //   type: 'challenge',
+  //   title: 'The Detachment',
+  //   content: 'Work felt efficient but hollow. Like watching someone else solve my problems.',
+  //   visual: 'detachment'
+  // },
+  // {
+  //   id: 10,
+  //   type: 'balance-attempt',
+  //   title: 'Attempting Balance',
+  //   content: 'Set boundaries: AI-free hours, manual journaling, deliberate slow thinking.',
+  //   visual: 'balance'
+  // },
+  // Slides 11-13: Insights
+  {
+    id: 9,
+    type: 'insight',
+    title: 'Insight untuk Mahasiswa',
+    content: 'AI Tidak Bisa Menggantikan Pertanyaan Bagus',
+    description: 'Local insight, pengalaman pribadi, kepekaan sosial = tak tergantikan.',
+    visual: 'efficiency'
+  },
+  {
+    id: 10,
+    type: 'insight',
+    title: 'Insight untuk Pendidik',
+    content: 'Jangan Larang AI. Tapi Jangan Biarkan Autopilot.',
+    description: 'Mahasiswa harus alami keduanya: WITH & WITHOUT AI. Tantangan: mendidik kepekaan, bukan sekadar skill teknis.',
+    visual: 'spark'
+  },
+  // {
+  //   id: 11,
+  //   type: 'insight',
+  //   title: 'Insight #3',
+  //   content: 'Preserve the human spark',
+  //   description: 'The messy, imperfect, uniquely human process of creation has value.',
+  //   visual: 'spark'
+  // },
+  // Slides 14-15: Tool or Driver
+  {
+    id: 11,
+    type: 'comparison',
+    title: 'Mencari Keseimbangan: Proses yang Masih Berjalan',
+    content: 'Insight sementara: keseimbangan bukan tentang batas waktu, tapi tentang intentionality.',
+    visual: 'tool'
+  },
+  // {
+  //   id: 15,
+  //   type: 'comparison',
+  //   title: 'AI as Driver',
+  //   content: 'Dictates workflow, makes decisions for us, replaces human judgment',
+  //   visual: 'driver'
+  // },
+  // Slides 16-17: Open Questions
+  {
+    id: 12,
     type: 'reflection',
-    title: 'For Reflection',
+    title: 'Tantangan & Peluang Era AI',
     questions: [
-      'When do you feel most creative?',
-      'What work gives you the deepest satisfaction?',
-      'How can AI support, not replace, these moments?'
+      'Tantangan: over-automation, kehilangan deep work, kecanduan cepatnya hasil.',
+      'Peluang: AI sebagai co-pilot, bukan driver utama.',
+      'AI bisa bantu kita kerja lebih cepat, tapi cuma kita yang bisa menentukan kenapa kita kerja.'
+    ]
+  },
+  {
+    id: 13,
+    type: 'reflection',
+    title: 'Pertanyaan reflektif',
+    questions: [
+      'Tidak ada rumus pasti — tapi kita bisa refleksi dan eksplorasi bersama.',
+      'Apa yang ingin kamu pertahankan sebagai manusia di era AI?'
     ]
   },
   // Slide 18: Closing
   {
-    id: 18,
-    type: 'closing',
-    title: 'The Path Forward',
-    content: 'Balance isn\'t a destination—it\'s a practice. Let\'s reflect together on finding our sustainable path in the AI era.',
-    visual: 'path'
-  },
-  // Slide 19: Toolkit
-  {
-    id: 19,
+    id: 14,
     type: 'toolkit',
-    title: 'Reflection Toolkit',
-    content: 'Scan for a personal reflection framework',
+    title: 'Submit jawabanmu',
+    content: 'Scan qr code ini untuk membuka form',
     qr: true
+  },
+  {
+    id: 15,
+    type: 'closing',
+    title: '✨ Pelajaran Penting dari seminar ini',
+    content: [
+      'AI adalah alat bantu, bukan pengganti proses berpikir.',
+      'Proses struggling itu penting — di sanalah orisinalitas dan pemahaman tumbuh.',
+      'AI membantu efisiensi teknis, tapi ide orisinal hanya muncul dari kepekaan, rasa ingin tahu, dan pengalaman manusia.',
+      'Pendidikan harus mengajarkan kapan dan bagaimana menggunakan AI secara bijak, bukan sekadar mempercepat tugas.',
+      'Proposal yang sempurna itu mudah dibuat dengan AI, tapi yang bernilai adalah proposal yang punya perspektif unik.',
+      'Kreativitas dan pertanyaan kritis adalah aset paling berharga di era AI.',
+      'Jangan hanya ajarkan hasil, ajarkan proses berpikir.'
+    ],
+    visual: 'path'
   },
   // Slide 20: Thank You
   {
-    id: 20,
+    id: 16,
     type: 'thanks',
     title: 'Thank You',
     subtitle: 'Questions & Discussion',
-    content: 'Let\'s continue this conversation together'
+    content: 'hidayatabisena@gmail.com'
   }
 ];

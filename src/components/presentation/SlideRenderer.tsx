@@ -31,6 +31,52 @@ const SlideRenderer = ({ slide, darkMode }: SlideRendererProps) => {
         </div>
       )}
 
+      {slide.type === 'comparison-table' && (
+        <div className="space-y-8">
+          <h1 className={`text-4xl font-bold text-center ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+            {slide.title}
+          </h1>
+          <h2 className={`text-2xl font-medium text-center ${darkMode ? 'text-slate-300' : 'text-slate-700'} mb-8`}>
+            {slide.subtitle}
+          </h2>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  {slide.headers.map((header, index) => (
+                    <th
+                      key={index}
+                      className={`p-4 text-left text-lg font-bold ${index === 0 ? '' : 'text-center'} 
+                ${darkMode ? 'text-white border-b border-slate-700' : 'text-slate-900 border-b border-slate-300'}`}
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {slide.rows.map((row, rowIndex) => (
+                  <tr key={rowIndex} className={rowIndex % 2 === 0 ?
+                    (darkMode ? 'bg-slate-800/50' : 'bg-slate-100/50') :
+                    ''}>
+                    <td className={`p-4 font-medium ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
+                      {row.aspect}
+                    </td>
+                    <td className={`p-4 text-center ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>
+                      {row.withAI}
+                    </td>
+                    <td className={`p-4 text-center ${darkMode ? 'text-green-300' : 'text-green-600'}`}>
+                      {row.withoutAI}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {slide.type === 'quote' && (
         <div className="text-center space-y-8">
           <blockquote className={`text-4xl font-light italic text-center max-w-4xl mx-auto ${darkMode ? 'text-slate-100' : 'text-slate-800'}`}>
@@ -108,7 +154,15 @@ const SlideRenderer = ({ slide, darkMode }: SlideRendererProps) => {
       {slide.type === 'challenge' && (
         <div className="text-center space-y-8">
           <h1 className={`text-5xl font-bold ${darkMode ? 'text-red-400' : 'text-red-600'}`}>{slide.title}</h1>
-          <p className={`text-2xl max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
+          {Array.isArray(slide.content) ? (
+            <div className={`text-2xl max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+              {slide.content.map((item, index) => (
+                <p key={index} className="italic mb-4">{item}</p>
+              ))}
+            </div>
+          ) : (
+            <p className={`text-2xl max-w-3xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
+          )}
           <div className="flex justify-center">
             <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center shadow-lg">
               <span className="text-6xl">⚡</span>
@@ -186,12 +240,22 @@ const SlideRenderer = ({ slide, darkMode }: SlideRendererProps) => {
           <h1 className="text-6xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
             {slide.title}
           </h1>
-          <p className={`text-2xl max-w-4xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
-          <div className="flex justify-center">
+          {Array.isArray(slide.content) ? (
+            <div className={`text-xl max-w-4xl mx-auto text-left ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+              <ol className="list-decimal pl-6 space-y-4">
+                {slide.content.map((item, index) => (
+                  <li key={index} className="leading-relaxed">{item}</li>
+                ))}
+              </ol>
+            </div>
+          ) : (
+            <p className={`text-2xl max-w-4xl mx-auto leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
+          )}
+          {/* <div className="flex justify-center">
             <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
               <span className="text-6xl">🌱</span>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
 
@@ -201,9 +265,11 @@ const SlideRenderer = ({ slide, darkMode }: SlideRendererProps) => {
           <p className={`text-2xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>{slide.content}</p>
           <div className="flex justify-center">
             <div className={`w-48 h-48 rounded-xl flex items-center justify-center border-4 shadow-lg ${darkMode ? 'bg-slate-800 border-slate-600' : 'bg-white border-slate-300'}`}>
-              <div className={`w-32 h-32 rounded-lg flex items-center justify-center ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
-                <span className="text-xs">QR Code</span>
-              </div>
+              <img 
+                src="https://res.cloudinary.com/moyadev/image/upload/v1749453326/Mayar/unma_form_lvh8yi.png" 
+                alt="QR Code" 
+                className="w-32 h-32 object-contain" 
+              />
             </div>
           </div>
         </div>
